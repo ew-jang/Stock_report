@@ -2,6 +2,18 @@
   "generated": "2026-06-28",
   "stocks": [
     {
+      "name": "QQQ",
+      "count": 1,
+      "latest": "2026-06-28",
+      "reports": [
+        {
+          "date": "2026-06-28",
+          "title": "📊 투자 총괄 분석 보고서 — QQQ (Invesco QQQ Trust)",
+          "path": "reports/QQQ/2026-06-28.md"
+        }
+      ]
+    },
+    {
       "name": "삼성전자",
       "count": 1,
       "latest": "2026-06-28",
