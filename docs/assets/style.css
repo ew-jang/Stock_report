@@ -1,0 +1,174 @@
+:root {
+  --bg: #0b1220;
+  --bg-soft: #131c2e;
+  --card: #16203400;
+  --surface: #16213a;
+  --surface-2: #1d2a45;
+  --line: #26344f;
+  --text: #e8eefc;
+  --muted: #93a2c0;
+  --accent: #4f8cff;
+  --up: #ff5d6c;
+  --down: #3da5ff;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: calc(env(safe-area-inset-top) + 14px) 18px 14px;
+  background: rgba(11, 18, 32, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.back {
+  appearance: none;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 22px;
+  line-height: 1;
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+.back:active { background: var(--surface-2); }
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 16px 60px;
+  min-height: 70vh;
+}
+
+.loading { color: var(--muted); text-align: center; padding: 60px 0; }
+
+/* ---- 목록 카드 ---- */
+.section-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 6px 2px 12px;
+  letter-spacing: 0.02em;
+}
+.grid { display: grid; gap: 12px; }
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+.card:active { transform: scale(0.985); background: var(--surface-2); }
+.card .meta { min-width: 0; }
+.card .name { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.card .sub { color: var(--muted); font-size: 13px; margin-top: 3px; }
+.card .chev { color: var(--muted); font-size: 20px; flex: 0 0 auto; }
+.badge {
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+/* ---- 리포트 본문 ---- */
+.report {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px 28px;
+}
+.report h1 { font-size: 23px; line-height: 1.3; margin: 4px 0 16px; letter-spacing: -0.02em; }
+.report h2 {
+  font-size: 18px;
+  margin: 30px 0 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  letter-spacing: -0.01em;
+}
+.report h3 { font-size: 15.5px; color: #cfe0ff; margin: 20px 0 8px; }
+.report p, .report li { font-size: 15px; }
+.report strong { color: #fff; }
+.report hr { border: none; border-top: 1px solid var(--line); margin: 22px 0; }
+.report a { color: var(--accent); }
+.report code {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.report pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.report pre code { background: none; border: none; padding: 0; }
+.report blockquote {
+  margin: 14px 0;
+  padding: 2px 14px;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+
+/* 표: 모바일에서 가로 스크롤 */
+.table-wrap { overflow-x: auto; margin: 14px 0; -webkit-overflow-scrolling: touch; }
+.report table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 360px; }
+.report th, .report td {
+  border: 1px solid var(--line);
+  padding: 9px 11px;
+  text-align: left;
+  vertical-align: top;
+}
+.report th { background: var(--surface-2); font-weight: 700; white-space: nowrap; }
+.report tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+
+.foot {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 16px calc(env(safe-area-inset-bottom) + 26px);
+}
+
+.empty { color: var(--muted); text-align: center; padding: 50px 0; }
