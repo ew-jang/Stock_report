@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-28",
+  "generated": "2026-06-29",
   "stocks": [
     {
       "name": "QQQ",
@@ -10,6 +10,18 @@
           "date": "2026-06-28",
           "title": "📊 투자 총괄 분석 보고서 — QQQ (Invesco QQQ Trust)",
           "path": "reports/QQQ/2026-06-28.md"
+        }
+      ]
+    },
+    {
+      "name": "SOXL",
+      "count": 1,
+      "latest": "2026-06-29",
+      "reports": [
+        {
+          "date": "2026-06-29",
+          "title": "SOXL (Direxion Daily Semiconductor Bull 3X ETF) 종합 투자 분석 리포트",
+          "path": "reports/SOXL/2026-06-29.md"
         }
       ]
     },
