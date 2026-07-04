@@ -52,3 +52,28 @@
 - 2단계는 1단계 세 결과에 의존하므로, 셋이 모두 끝난 뒤 실행한다.
 - 3단계 파일 저장은 종목 분석을 수행할 때마다 **예외 없이** 실행한다.
 - 단순 정보 조회(예: "오늘 삼성전자 주가")는 이 워크플로우를 적용하지 않아도 된다.
+
+## 저장소 구조
+
+- `.claude/agents/*.md` — 4개 서브에이전트 정의(frontmatter: `name`, `description`,
+  `model`, `memory: project`). 워크플로우를 수정할 때는 이 파일들의 프롬프트가
+  실제 동작을 결정하므로 함께 확인한다.
+- `.claude/agent-memory/{agent-name}/` — 각 에이전트의 프로젝트 범위 영구 메모리
+  (`MEMORY.md` 인덱스 + 개별 메모리 파일). 버전 관리되어 팀과 공유된다.
+- `report/{종목명}_{YYYY-MM-DD}.md` — 워크플로우 3단계에서 저장하는 원본 리포트.
+  이 폴더가 사이트 생성의 유일한 소스 오브 트루스다.
+- `build_site.py` — `report/*.md`를 읽어 `docs/`(GitHub Pages용 정적 사이트)를
+  재생성한다. 종목명별 디렉토리(`docs/reports/{종목명}/{날짜}.md`)로 분리하고
+  `docs/manifest.json`(종목·리포트 목록, 각 리포트의 제목은 원본 md의 첫 `# ` 헤딩에서 추출)을
+  새로 만든다. 실행 시마다 `docs/reports/`를 통째로 삭제 후 재생성하므로, 이 폴더는
+  직접 편집하지 않고 항상 `report/`를 고쳐서 재생성한다.
+- `docs/` — GitHub Pages로 배포되는 모바일 친화적 SPA(`index.html` + `assets/app.js`
+  + `assets/style.css`)와 위에서 생성된 리포트 사본. `report/`에 리포트를 추가/수정한
+  뒤에는 `python3 build_site.py`를 실행해야 사이트에 반영된다.
+
+## 자주 쓰는 명령
+
+```bash
+python3 build_site.py          # report/*.md → docs/ 사이트 재생성 (필수 실행, 커밋 전에 실행)
+cd docs && python3 -m http.server 8000   # 로컬 미리보기 (http://localhost:8000)
+```
